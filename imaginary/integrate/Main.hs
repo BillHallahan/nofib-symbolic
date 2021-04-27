@@ -17,8 +17,8 @@ integrate1D l u f =
         (f u)*0.5]
 
 integrate2D l1 u1 l2 u2 f = integrate1D l2 u2
-				    (\y->integrate1D l1 u1
-						  (\x->f x y))
+            (\y->integrate1D l1 u1
+              (\x->f x y))
 
 zark u v = integrate2D 0.0 u 0.0 v (\x->(\y->x*y))
 
@@ -37,7 +37,7 @@ etotal n = sum (take n es)
 
 -- The (analytical) result should be zero
 main = do
-	[range] <- getArgs
-	putStrLn $ show $ etotal $ read range
-
-
+  [with_output,range] <- getArgs
+  if (read with_output)
+    then putStrLn $ show $ etotal $ read range
+    else seq (etotal $ read range) (putStrLn "Exact result hidden for lack of stability.\nPass 'True' as first argument to the benchmark if you want to view the computed output for testing purposes.")
