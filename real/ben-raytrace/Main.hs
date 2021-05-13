@@ -14,6 +14,7 @@ import Sampler
 import SamplerMonad
 import Scene.Type
 import Scene.Scene2 as Scene
+import System.Environment
 
 partitionPlane :: Coord -> Int -> [(Coord, Coord)]
 partitionPlane size chunkSize =
@@ -28,11 +29,12 @@ partitionPlane size chunkSize =
 main :: IO ()
 main = do
     scene <- mkScene
+    [size_str] <- getArgs
 
     let nRuns = 1 :: Int
         chunkSize = 64 :: Int
         nSamples = 32  :: Int
-        size = let n = 256
+        size = let n = read size_str
                    aspect = cameraAspect $ sceneCamera scene
                in Coord n (round $ realToFrac n / aspect)
         nRays = nRuns * nSamples * coordX size * coordY size
