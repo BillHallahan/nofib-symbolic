@@ -6,13 +6,6 @@ variety of compile- and run-time metrics. These metrics are recorded in a
 common semi-structured CSV file format, which can be compared and analysed with
 the included `nofib-compare` utility.
 
-## Hackage head support
-
-Simply pass `--head` to the shake runner to use hackage.head.
-
-This works by using `nofib.head` as cabal project file for test dependencies instead of
-`cabal.project`.
-
 ## Usage
 
 The `nofib-run` executable is used to run the benchmark suite and accepts a variety of arguments.
