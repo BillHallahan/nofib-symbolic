@@ -22,12 +22,10 @@ import qualified Data.ByteString.Lazy.Char8 as BSL
 import System.Info hiding (compilerVersion)
 import System.Exit
 import qualified System.IO as IO
-import Options.Applicative
 
 -- Shake - build system
 import Development.Shake
 import Development.Shake.FilePath hiding (exe)
-import Development.Shake.Util as SU
 
 import RunnerTypes
 import qualified Measurements as Ms
@@ -37,9 +35,6 @@ import qualified CachegrindParse
 import qualified PerfStatParse
 
 import Utils
-import Debug.Trace
-import Control.DeepSeq
-import Control.Concurrent
 
 -- | A handy shortcut.
 ml :: String -> Label
