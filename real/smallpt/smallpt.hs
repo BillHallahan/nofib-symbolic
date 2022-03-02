@@ -222,5 +222,4 @@ main = do
   vec <- smallpt w h samples
   if mode == "img"
     then writeImage stdout (w, h) vec
-    else  hPutStr stdout (hashImage vec)
-
+    else hPutStr stdout (printf "%.6f" (read (hashImage vec) :: Double))
