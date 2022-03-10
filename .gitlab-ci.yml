@@ -2,7 +2,7 @@
 variables:
   DOCKER_REV: 853f348f9caf38b08740b280296fbd34e09abb3a
 
-validate-hadrian:
+.validate-hadrian:
   image: "registry.gitlab.haskell.org/ghc/ci-images/x86_64-linux-deb10:$DOCKER_REV"
   tags:
     - x86_64-linux
@@ -14,10 +14,22 @@ validate-hadrian:
     - git submodule update --init --recursive
     - $GHC --version
     - cabal update
-    - cabal new-run -w $GHC nofib-run -- -o out -w "$GHC"
+    - cabal new-run -w $GHC nofib-run -- -o out -w "$GHC" $EXTRA_ARGS
     - mkdir -p results
     - $GHC --info > results/compiler-info
     - cp _make/out/*.results.tsv results
   artifacts:
     paths:
       - results
+
+validate-hadrian-normal:
+  extends:
+    - .validate-hadrian
+  variables:
+    EXTRA_ARGS: "--speed=Normal"
+
+validate-hadrian-fast:
+  extends:
+    - .validate-hadrian
+  variables:
+    EXTRA_ARGS: "--speed=Fast"
