@@ -26,7 +26,7 @@ validate-hadrian-normal:
   extends:
     - .validate-hadrian
   variables:
-    EXTRA_ARGS: "--speed=Normal"
+    EXTRA_ARGS: "--speed=Norm"
 
 validate-hadrian-fast:
   extends:
