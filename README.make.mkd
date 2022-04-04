@@ -52,6 +52,14 @@ $ make boot
 $ make EXTRA_HC_OPTS="-fllvm"
 ```
 
+Likewise, you can pass additional arguments (e.g. RTS flags) to the command
+itself by using the `EXTRA_RUNTEST_OPTS` variable like this:
+
+    make EXTRA_RUNTEST_OPTS="-- +RTS -A2M -RTS"
+
+The `--` here ensures that `runtest` doesn't attempt to interpret any of the
+given flags as its own.
+
 **Note:** to get all the results, you have to `clean` and `boot` between
 separate `nofib` runs.
 
