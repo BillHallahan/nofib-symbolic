@@ -275,9 +275,9 @@ environment).
 > main :: IO ()
 > main = do
 >  (n:_) <- getArgs
+>  input <- unlines <$> words <$> getContents
 >  replicateM_ (read n) $ do
->    (_:argv) <- getArgs
->    parse_args defaultEnv (unlines argv)
+>    parse_args defaultEnv input
 
 \end{haskell}
 
