@@ -38,7 +38,7 @@ amino homosapiens[] = {
 #define LENGTH(a) (sizeof(a)/sizeof(a[0]))
 
 static inline void str_write(char *s) {
-   write(fileno(stdout), s, strlen(s));
+    (void)! write(fileno(stdout), s, strlen(s));
 }
 
 void str_repeat(char *s, int outlen) {
@@ -61,7 +61,7 @@ void str_repeat(char *s, int outlen) {
    int l = 0;
    while (outlen > 0) {
       l = outlen > len ? len : outlen;
-      write(fd, buf, l);
+      (void)! write(fd, buf, l);
       outlen -= len;
    }
    if (buf[l-1] != '\n') str_write("\n");
@@ -107,13 +107,13 @@ void rand_fasta(amino *s, size_t outlen) {
    while (outlen--) {
       buf[i++] = lookup[rnd()];
       if (i == WIDTH) {
-         write(fd, buf, WIDTH + 1);
+         (void)! write(fd, buf, WIDTH + 1);
          i = 0;
       }
    }
    if (i) {
       buf[i] = '\n';
-      write(fd, buf, i + 1);
+      (void)! write(fd, buf, i + 1);
    }
 }
 

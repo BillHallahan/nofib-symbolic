@@ -89,7 +89,7 @@ int main() {
       free(w);
    }
 
-   write(fileno(stdout), buf, end);
+   (void)! write(fileno(stdout), buf, end);
    free(buf);
 
    return 0;
