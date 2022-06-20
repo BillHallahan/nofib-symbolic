@@ -45,8 +45,13 @@ ml = Ms.mkLabel
 
 -- | These are directories that we look into for tests by default.
 testRoots :: [String]
-testRoots = words "imaginary spectral real shootout parallel smp"
-            -- Note that we don't run the gc tests by default.
+testRoots = words "imaginary spectral real shootout"
+            -- Note that we don't run the gc smp and parallel tests by default.
+            -- See #24 for some of the reasoning. The short version is that they are not very
+            -- stable run to run and are more sensitive to system load. So more care has to be
+            -- taken to properly run these.
+            -- Currently we value benchmark stability higher than including these in the default set
+            -- therefore we skip these by default.
 
 defaultNoFibHcOpts :: [String]
 defaultNoFibHcOpts = words "-O2 -Wno-tabs"

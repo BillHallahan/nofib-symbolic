@@ -16,7 +16,7 @@ library
   exposed-modules:     Measurements
   ghc-options:         -Wall
   hs-source-dirs:      src
-  build-depends:       base >=4.5 && <4.16,
+  build-depends:       base >=4.5 && <4.17,
                        aeson,
                        these >= 0.8,
                        containers,
@@ -42,7 +42,7 @@ executable nofib-run
     , DeriveDataTypeable
     , BangPatterns
     , ScopedTypeVariables
-  build-depends:       base >=4.5 && <4.16,
+  build-depends:       base >=4.5 && <4.17,
                        time >=1.4 && <1.10,
                        containers,
                        bytestring,
@@ -62,7 +62,7 @@ executable nofib-compare
   ghc-options:         -Wall
   other-modules:       LabelMatch
   other-extensions:    RecordWildCards, DeriveDataTypeable
-  build-depends:       base >=4.5 && <4.16,
+  build-depends:       base >=4.5 && <4.17,
                        these,
                        containers,
                        directory,
@@ -81,7 +81,7 @@ executable nofib-compare
 executable nofib-merge
   main-is:             Merge.hs
   ghc-options:         -Wall
-  build-depends:       base >=4.5 && <4.16,
+  build-depends:       base >=4.5 && <4.17,
                        optparse-applicative,
                        cassava,
                        bytestring,
