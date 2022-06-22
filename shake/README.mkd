@@ -50,6 +50,23 @@ A number of classes of metrics are collected:
    allocations) from the execution of `ghc` while compiling the testcase
  * runtime system statistics from the execution of the testcase
 
+### Running a subset of tests
+
+Individual tests or groups of tests can be run by pointing the runner to their location.
+
+To benchmark only spectral simple we would add `spectral/simple` to the command line. A full cmd line will then
+look like this:
+
+`cabal run nofib-run -- -w /opt/ghc-9.0.1/bin/ghc spectral/simple -o_simple`
+
+Multiple benchmarks can be passed this way as well. For example to run the `simple` and `dom-lt` benchmarks we might use:
+
+`cabal run nofib-run -- -w /opt/ghc-9.0.1/bin/ghc spectral/simple -o_simple spectral/dom-lt/`
+
+We can also pass a folder to the runner, which will then run all benchmarks within the folder. E.g. to run all the spectral benchmarks we would use:
+
+`cabal run nofib-run -- -w /opt/ghc-9.0.1/bin/ghc -o_simple spectral/`
+
 ### Cachegrind
 
 The benchmarks can also be run under valgrind's
