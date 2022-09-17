@@ -264,6 +264,7 @@ main = do
     tabulate "compiler GC (cpu) time"      $ objectCompilerRtsStats <* "GC_cpu_seconds"
     tabulate "compiler GC (wall) time"      $ objectCompilerRtsStats <* "GC_wall_seconds"
     tabulate "executable size"       $ testName <* "executable size"
+    tabulate "code size (.text)"     $ objectCompilerSize
     -- run-time metrics
     tabulate "bytes allocated"       $ runRtsStats <* "bytes allocated"
     tabulate "mutator time"          $ runRtsStats <* ("mutator_cpu_seconds" <|> "mut_cpu_seconds")
@@ -295,6 +296,9 @@ testName = wildcard
 
 objectCompilerRtsStats :: LabelMatcher (TestName, ModuleName)
 objectCompilerRtsStats = (,) <$> testName <* "objects" <*> wildcard <* "rts stats"
+
+objectCompilerSize :: LabelMatcher (TestName,ModuleName)
+objectCompilerSize = (,) <$> testName <* "objects" <*> wildcard <* "size"
 
 runRtsStats :: LabelMatcher TestName
 runRtsStats = testName <* "run" <* "rts stats"
