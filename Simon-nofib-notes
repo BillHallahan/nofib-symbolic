@@ -423,6 +423,11 @@ sorting
 ~~~~~~~
 Same issue with GHC.IO.Encoding.UTF8 as treejoin
 
+life
+~~~~
+The call to zipWith3 in row is quite close to the inlining threshold.
+Makes a difference of about 2% last time it flipped.
+
 
 ---------------------------------------
 	Real suite
