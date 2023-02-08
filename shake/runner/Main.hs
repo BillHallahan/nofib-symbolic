@@ -452,13 +452,16 @@ buildRules nofib@Build{..} = do
 
     -- Run tests under cachegrind
     ["//Main.cachegrind.results.tsv"] &%> \[resultsTsv] -> do
-        out' <- liftIO $ IO.canonicalizePath resultsTsv
         let test = testFromResultTsv nofib resultsTsv
+            src_dir = testDir test          -- eg. spectral/simple
+            obj_dir = output </> src_dir    -- eg. _make/foo/spectral/simple
+        out' <- liftIO $ IO.canonicalizePath resultsTsv
+        obj_dir' <- liftIO $ IO.canonicalizePath obj_dir
         let cachegrindOut n = FP.replaceFileName out' ("Main.cachegrind.result" <.> show n)
         let wrapper_args n =
               ["valgrind", "--tool=cachegrind"] <> cachegrind_args <>
               [ "--cachegrind-out-file="<>cachegrindOut n
-              , "--log-file=cachegrind.log"
+              , "--log-file=" <> obj_dir' </> "cachegrind.log"
               ]
 
         let parse_cachegrind n = do
