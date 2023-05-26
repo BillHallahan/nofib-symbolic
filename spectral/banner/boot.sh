@@ -13,7 +13,7 @@ HC=${3:-ghc}
 mode=${4:-norm}
 
 EXE=""
-if [[ $(shell uname -s | grep -c 'MSYS\|MINGW') -eq 1 ]]
+if [[ $(uname -s | grep -c 'MSYS\|MINGW') -eq 1 ]]
 then
   EXE=".exe"
 fi
