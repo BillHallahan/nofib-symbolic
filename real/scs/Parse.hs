@@ -1,7 +1,7 @@
 module Parse(parse_circuit, parse_exact, parse_approx, parse_integer) where
 
 import Data.Char
-import Data.List
+import Data.List hiding (List)
 import Data.Maybe
 import Data.Ratio
 
