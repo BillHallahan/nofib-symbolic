@@ -3,6 +3,6 @@ include $(TOP)/mk/boilerplate.mk
 -include opts.mk
 include $(TOP)/mk/target.mk
 
-FAST_OPTS =   60
-NORM_OPTS =  600
-SLOW_OPTS = 3000
+FAST_OPTS =   2
+NORM_OPTS =  20
+SLOW_OPTS = 100

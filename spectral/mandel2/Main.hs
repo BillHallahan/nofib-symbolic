@@ -7,6 +7,7 @@ module Main where
 
 import Control.Monad
 import System.Environment
+import NofibUtils
 
 a `par` b = b
 --1.3 a `seq` b = b
@@ -220,7 +221,5 @@ main = do
   [n] <- getArgs
   replicateM_ (read n) $ do
     -- m should always be smaller than size, but the compiler can't know that
-    m <- length <$> getArgs
-    let size' = max m size
+    size' <- salt size
     finite (build_tree (0,0) (size',size' `div` 2)) `seq` return ()
-
