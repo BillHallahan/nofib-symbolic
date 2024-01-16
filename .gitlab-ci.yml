@@ -1,6 +1,6 @@
 # Commit taken from https://gitlab.haskell.org/ghc/ci-images
 variables:
-  DOCKER_REV: 853f348f9caf38b08740b280296fbd34e09abb3a
+  DOCKER_REV: f8658053d14911d73b1e32f5b6d13fb7b1c8a5ee
 
 .validate-hadrian:
   image: "registry.gitlab.haskell.org/ghc/ci-images/x86_64-linux-deb10:$DOCKER_REV"
