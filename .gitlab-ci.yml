@@ -9,6 +9,7 @@ variables:
   tags:
     - x86_64-linux
   before_script:
+    - sudo chown ghc:ghc -R .
     - git clean -xdf
     - $GHC --version
     - cabal --version
