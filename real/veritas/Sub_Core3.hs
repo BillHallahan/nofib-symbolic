@@ -6,7 +6,7 @@
  *
  * Each constructors last argument (of the tuple) is a list of
  * information attributes that the parser, unparsers, tactics etc use.
- *	
+ *
  * Each terms' next to last argument is a list of alternative types the the
  * term can have to its natutal type.
  *
@@ -246,9 +246,9 @@ eval (Constant T _ _) = True
 eval (Constant F _ _) = False
 
 --eval (Constant _ _ _) = error "EvalError" -- ** exn
-	
+
 eval (Binder Forall dc tm _ _)
-	= eval_quant forall dc tm
+	= eval_quant vforall dc tm
 
 eval (Binder Exists dc tm _ _)
 	= eval_quant exists dc tm

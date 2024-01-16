@@ -384,7 +384,7 @@ constructor (SG sg) i j k
 {- Datatype elimination -}
 
 recurse tmL (TM (tm@(Binder Pi (Symbol_dec tm1 _) _ _ _)) _ sg)
-	= if forall ok (zip tmL tyL)
+	= if vforall ok (zip tmL tyL)
 	       then
 		   TM (Recurse (map fst tmL) tm [] []) tm sg
 	       else
@@ -407,10 +407,10 @@ widen (TM tm1 tm2 sg1) (TH (Binary' Issubtype tm3 tm4 _ _) sg2)
 	    then
 	    	TM (add_type tm1 tm4) tm4 sg1
 	    else
-		TM_Err "widen: error"	
+		TM_Err "widen: error"
 
 widen _ _ = TM_Err "widen: error (2)"
-	
+
 
 
 
@@ -515,7 +515,7 @@ get_Sgn_att (SG sg) = get_sgn_att sg
 
 
 {- Set the attributes of a signature -}
-		
+
 set_Sgn_att (SG sg) att = (SG (set_sgn_att sg att))
 
 
@@ -523,7 +523,7 @@ set_Sgn_att (SG sg) att = (SG (set_sgn_att sg att))
 
 
 {- Return the internal representation of a signature -}
-	
+
 internal_Sgn (SG sg) = sg
 
 
@@ -548,7 +548,7 @@ symbol_dec (TM tm1 tm2 sg)
 
 
 
-		
+
 {- declare a new axiom -}
 
 axiom_dec (TM tm (Constant Bool' _ _) sg)
@@ -570,7 +570,7 @@ def (TM tm1 tm2 sg)
 
 
 make_data tmLL (TH tm sg)
-	= if forall (forall (wf_param sg1)) tmLL
+	= if vforall (vforall (wf_param sg1)) tmLL
 		then
 		   if exists (eq_trm tm) non_empty_thms
 		      then
@@ -647,7 +647,7 @@ set_Dec_att (DC dc sg) att
 
 internal_Dec (DC dc sg) = (dc,sg)
 
-	
+
 
 
 
@@ -816,7 +816,7 @@ beta_rw (TH tm sg) i
 
 
 
-{- Eta reduce a subterm of a theorem -}	
+{- Eta reduce a subterm of a theorem -}
 
 eta_rw (TH tm sg) i
 	= case select_trm tm i of
@@ -998,7 +998,7 @@ eq_of_ty _ _ = TH_Err "eq_of_ty error (2)"
 
 from (TM tm1 (Binder Subtype dc tm2 _ _) sg)
 	= TH (subst_trm dc tm2 tm1) sg
-	
+
 from _ = TH_Err "from: argument must be term of subtype sort"
 
 
@@ -1035,7 +1035,7 @@ weaken (SG sg1) (TH tm sg2)
 
 
 
-	
+
 
 set_Thm_att (TH tm sg) iL att
 	= TH (set_trm_att tm iL att) sg
@@ -1050,7 +1050,7 @@ get_Thm_att (TH tm sg) iL
 
 
 
-	
+
 {- Restore a theorem from the database -}
 
 restore_Thm s = error "BadTheorem" -- ** exn
@@ -1167,8 +1167,8 @@ write_obj magic_str type_str obj file
 		  | NONE    => (write (sgn_dir ^ anon_sgn_name_header ^ name) sgn_rep;
 				anon_sgn_name_header ^ name)
 	    end
-		
-	
+
+
     val a_chr = fromEnum "a"
     and z_chr = fromEnum "z"
     and A_chr = fromEnum "A"
@@ -1193,7 +1193,7 @@ write_obj magic_str type_str obj file
 			(ch = minus_chr)			orelse
 			(ch = underline_chr)			orelse
 			(ch = dot_cht)
-	    in forall ok_ch (map fromEnum (explode name)) end
+	    in vforall ok_ch (map fromEnum (explode name)) end
 
     in (* local *)
 
@@ -1306,7 +1306,7 @@ typ_of_Thm ( TH tm sg )
 shift_Trm i (SG sg1) (TM tm1 tm2 sg2)
 	= if eq_sgn sg2 sg3
 		then TM (shift_trm sm i tm1) (shift_trm sm i tm2) sg1
-	        else TM_Err "shift_Trm: signatures unequal"	
+	        else TM_Err "shift_Trm: signatures unequal"
 	  where
 	  sg3 = nth_sgn i sg1
 	  sm  = get_share_map sg2

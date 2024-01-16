@@ -1,7 +1,7 @@
-module Vtslib( Option(..) , Sum(..) , forall , exists , assoc ,
+module Vtslib( Option(..) , Sum(..) , vforall , exists , assoc ,
 		haskey , uncurry , curry , for , map' , module Core_datatype )
 	      where
-	
+
 import Core_datatype
 
 data Option a = NONE | SOME a
@@ -11,12 +11,12 @@ data Sum a b = Inl a | Inr b
 {-
     (* Apply the predicate p to all the elements of *)
     (* a  list, and then AND the  results together. *)
-    N.B. forall & exists rewritten from ML
+    N.B. vforall & exists rewritten from ML
 -}
 
-forall :: ( a -> Bool ) -> [a] -> Bool
+vforall :: ( a -> Bool ) -> [a] -> Bool
 
-forall p = and . ( map p )
+vforall p = and . ( map p )
 
 
 
@@ -74,7 +74,7 @@ haskey key al
 	    let fun fold e [] = e
 		  | fold e (a::l) = fold (f a e) l
 	    in fold end
-		
+
     fun foldr f e =
 	    let fun fold [] = e
 		  | fold (a::l) = f a (fold l)

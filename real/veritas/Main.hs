@@ -107,7 +107,7 @@ goto_next tr@(TreeSt t _ _)
 
 incomplete_tree (Tree _ tl (SOME _) _ _ ) = False
 
-incomplete_tree (Tree _ tl NONE _ _ ) = forall is_complete tl
+incomplete_tree (Tree _ tl NONE _ _ ) = vforall is_complete tl
 
 
 
