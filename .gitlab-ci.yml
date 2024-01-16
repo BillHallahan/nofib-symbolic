@@ -1,6 +1,8 @@
 # Commit taken from https://gitlab.haskell.org/ghc/ci-images
 variables:
   DOCKER_REV: f8658053d14911d73b1e32f5b6d13fb7b1c8a5ee
+  # Always start with a fresh clone to avoid non-hermetic builds
+  GIT_STRATEGY: clone
 
 .validate-hadrian:
   image: "registry.gitlab.haskell.org/ghc/ci-images/x86_64-linux-deb10:$DOCKER_REV"
