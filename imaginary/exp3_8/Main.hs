@@ -18,6 +18,8 @@ Haskell and here is the result using hbc.
 ----------------------------------------------------------
 import System.Environment
 
+import G2.Symbolic
+
 infix 8 ^^^
 
 data Nat = Z | S Nat deriving (Eq,Ord, Show {-was:Text-})
@@ -39,8 +41,8 @@ x ^^^ Z   = S Z
 x ^^^ S y = x * (x ^^^ y)
 
 main = do
-	[power] <- getArgs
-	print $ int (3 ^^^ (fromInteger $ read power))
+	power <- mkSymbolic
+	print $ int (3 ^^^ (fromInteger $ power))
 
 --
 -- Timing for hbc version 0.997.2

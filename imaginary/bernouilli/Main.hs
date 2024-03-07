@@ -10,6 +10,8 @@ import System.Environment
 import Control.Monad
 import NofibUtils
 
+import G2.Symbolic
+
 -- powers = [[r^n | r<-[2..]] | n<-1..]
 -- type signature required for compilers lacking the monomorphism restriction
 powers :: [[Integer]]
@@ -36,6 +38,6 @@ bernoulli n =
   where powers = (neg_powers!!(n-1))
 
 main = replicateM_ 500 $ do
- [arg] <- getArgs
- let n = (read arg)::Int
+ arg <- mkSymbolic
+ let n = (arg)::Int
  print (hash (show (bernoulli n)))

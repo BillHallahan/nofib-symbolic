@@ -13,8 +13,10 @@ import Control.Monad (replicateM_)
 import System.Environment
 import NofibUtils (hash)
 
-main = replicateM_ 500 $ do
-  (regex:_) <- getArgs
+import G2.Symbolic
+
+main = replicateM_ 2 $ do
+  regex <- mkSymbolic
   print (hash (concat (expand regex)))
 
 numchars :: [String] -> Int

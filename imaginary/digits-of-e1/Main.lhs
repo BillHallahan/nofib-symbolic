@@ -6,6 +6,8 @@ Original program due to Dale Thurston, Aug 2001
 > import Control.Monad (replicateM_)
 > import NofibUtils (hash)
 
+> import G2.Symbolic
+
 > type ContFrac = [Integer]
 
 Compute the decimal representation of e progressively.
@@ -43,5 +45,5 @@ Finally, we convert a continued fraction to digits by repeatedly multiplying by 
 > e n = takeDigits n eContFrac
 
 > main = replicateM_ 100 $ do
->	[digits] <- getArgs
->	print (hash (show (e (read digits))))
+>	digits <- mkSymbolic
+>	print (hash (show (e (digits))))

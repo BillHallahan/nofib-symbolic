@@ -6,6 +6,8 @@ Due to John Hughes, Aug 2001
 > import Control.Monad
 > import NofibUtils
 
+> import G2.Symbolic
+
 Here's a way to compute all the digits of e. We use the series
 
    e = 2  +  1  +  1  +  1  +  ...
@@ -58,5 +60,5 @@ works.
 >     2:[1,1..]
 
 > main = replicateM_ 100 $ do
-> 	[digits] <- getArgs
-> 	print (hash (show (e (read digits))))
+> 	digits <- mkSymbolic
+> 	print (hash (show (e (digits))))
