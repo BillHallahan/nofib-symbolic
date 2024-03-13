@@ -5,6 +5,8 @@
 import System.Environment
 import Control.Monad (forM_)
 
+import G2.Symbolic
+
 prime :: Int -> Int
 prime n = primes !! n
   where
@@ -48,6 +50,6 @@ nextSize (Wheel s ms ns) p q =
     if n'`mod`p>0 then n':rs else rs
 
 main = forM_ [1..100] $ const $ do
-	[arg] <- getArgs
-	print (prime ((read arg) :: Int))
+	arg <- mkSymbolic
+	print (prime ((arg) :: Int))
 

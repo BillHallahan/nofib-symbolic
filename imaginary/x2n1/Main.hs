@@ -27,9 +27,11 @@ module Main ( main ) where
 import Data.Complex
 import System.Environment
 
+import G2.Symbolic
+
 main = do
-	[arg] <- getArgs
-	print (round (realPart (sum [f n | n <- [1 .. (read arg)]])))
+	arg <- mkSymbolic
+	print (round (realPart (sum [f n | n <- [1 .. (arg)]])))
 
 f :: Int -> Complex Double
 f n = mkPolar 1 ((2*pi)/fromIntegral n) ^ n

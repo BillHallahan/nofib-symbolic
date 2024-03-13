@@ -1,6 +1,7 @@
 
 import System.Environment
 
+import G2.Symbolic
 
 -- code of unknown provenance (partain 95/01/25)
 
@@ -12,5 +13,7 @@ tak x y z = if not(y < x) then z
 		(tak (z-1) x y)
 
 main = do
-	[xs,ys,zs] <- getArgs
-	print (tak (read xs) (read ys) (read zs))
+    xs <- mkSymbolic
+    ys <- mkSymbolic
+    zs <- mkSymbolic
+    print (tak (xs) (ys) (zs))

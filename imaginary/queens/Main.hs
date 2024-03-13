@@ -3,10 +3,11 @@
 
 import System.Environment
 
+import G2.Symbolic
 
 main = do
-	[arg] <- getArgs
-	print $ nsoln $ read arg
+	arg <- mkSymbolic
+	print $ nsoln $ arg
 
 nsoln nq = length (gen nq)
  where

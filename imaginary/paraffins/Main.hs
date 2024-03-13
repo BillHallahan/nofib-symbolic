@@ -10,6 +10,8 @@ import Data.Array
 import System.Environment
 import Control.Monad (replicateM_)
 
+import G2.Symbolic
+
 -- Generation of radicals
 
 data Radical = H | C Radical Radical Radical
@@ -84,8 +86,8 @@ paraffins_until n =
   radicals = radical_generator (div n 2)
 
 main = replicateM_ 1000 $ do
-  [arg] <- getArgs
-  let num = read arg
+  arg <- mkSymbolic
+  let num = arg
   print [length (rads!i) | rads <- [(radical_generator num)], i <- [0..num]]
   print (bcp_until num)
   print (ccp_until num)

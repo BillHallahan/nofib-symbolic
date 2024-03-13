@@ -2,6 +2,8 @@
 import Control.Monad (forM_)
 import System.Environment
 
+import G2.Symbolic
+
 isdivs :: Int  -> Int -> Bool
 isdivs n x = mod x n /= 0
 
@@ -12,5 +14,5 @@ prime :: Int -> Int
 prime n = map head (iterate the_filter [2..n*n]) !! n
 
 main = forM_ [1..100] $ const $ do
-	[arg] <- getArgs
-	print $ prime (read arg)
+	arg <- mkSymbolic
+	print $ prime (arg)

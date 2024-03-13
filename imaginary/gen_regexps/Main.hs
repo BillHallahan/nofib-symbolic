@@ -15,7 +15,7 @@ import NofibUtils (hash)
 
 import G2.Symbolic
 
-main = replicateM_ 2 $ do
+main = replicateM_ 500 $ do
   regex <- mkSymbolic
   print (hash (concat (expand regex)))
 

@@ -19,6 +19,8 @@ import Data.Bits
 import Data.Word
 import System.Environment
 
+import G2.Symbolic
+
 vdim :: Int
 vdim = 100
 
@@ -58,8 +60,8 @@ calc vnum = do
 
 main :: IO ()
 main = do
-    [arg] <- getArgs
+    arg <- mkSymbolic
     -- Floating point benchmarks have unstable output across platforms, so
     -- we output the actual result.
     -- print . elems $ runSTUArray $ calc $ read arg
-    runSTUArray (calc (read arg)) `seq` return ()
+    runSTUArray (calc (arg)) `seq` return ()

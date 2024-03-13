@@ -5,6 +5,8 @@
 import System.Environment
 import Control.Monad (forM_)
 
+import G2.Symbolic
+
 
 data Wheel = Wheel Int [Int]
 
@@ -45,5 +47,5 @@ nextSize (Wheel s ns) p =
               n' <- [n+o], n'`mod`p > 0]
 
 main = forM_ [1..100] $ const $ do
-	[arg] <- getArgs
-	print (prime (read arg))
+  arg <- mkSymbolic
+	print (prime (arg))
